@@ -1,0 +1,4 @@
+{
+  "src/**/*.{ts,tsx}": ["npx eslint --fix", "npx prettier --write"],
+  "src/**/*.{html,json,css,md}": ["npx prettier --write"]
+}

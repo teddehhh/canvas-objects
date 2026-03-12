@@ -1,0 +1,56 @@
+{
+  "name": "links",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env SERVE=true webpack serve",
+    "build": "webpack",
+    "build-prod": "webpack --mode=production",
+    "clean": "rd /s /q dist",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.0",
+    "@babel/preset-react": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "babel-loader": "^10.0.0",
+    "cross-env": "^10.1.0",
+    "css-loader": "^7.1.4",
+    "eslint": "^9.39.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.1",
+    "mini-css-extract-plugin": "^2.10.0",
+    "prettier": "^3.8.1",
+    "react-refresh": "^0.18.0",
+    "style-loader": "^4.0.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "webpack": "^5.105.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.3"
+  },
+  "engines": {
+    "node": ">=24.12.0",
+    "npm": ">=11.6.2"
+  }
+}
