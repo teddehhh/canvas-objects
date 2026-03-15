@@ -1,3 +1,5 @@
+import { GraphEditor } from './graph-editor';
+
 export function App() {
-  return <>App</>;
+  return <GraphEditor />;
 }

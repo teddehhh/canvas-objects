@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 20px;
+  gap: 15px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.canvas {
+  flex: 1 1 auto;
+  min-height: 0;
+}
