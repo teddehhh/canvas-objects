@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styles from './graph-editor.module.css';
-import { useCanvas } from './useCanvas';
-import type { Link, Shape } from './types';
-import { renderLink } from './render-link';
-import { renderShape } from './render-shape';
+import { useCanvas } from '../lib/hooks/useCanvas';
+import type { Link, Shape } from '../types/types';
+import { renderLink } from '../lib/render-link';
+import { renderShape } from '../lib/render-shape';
 
 export function GraphEditor() {
   const [shapes, setShapes] = useState<Shape[]>([]);

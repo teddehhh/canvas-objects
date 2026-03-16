@@ -1,4 +1,4 @@
-import type { Shape } from './types';
+import type { Shape } from 'src/types/types';
 
 export const renderShape = (ctx: CanvasRenderingContext2D, shape: Shape, isSelected?: boolean) => {
   const { position, size, text } = shape;

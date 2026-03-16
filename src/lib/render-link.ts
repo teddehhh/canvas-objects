@@ -1,4 +1,4 @@
-import type { Shape } from './types';
+import type { Shape } from 'src/types/types';
 
 export const renderLink = (context: CanvasRenderingContext2D, from: Shape, to: Shape) => {
   const startX = from.position.x + from.size.width / 2;
