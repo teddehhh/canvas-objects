@@ -17,7 +17,7 @@ export function useGraph() {
         y: shapes.length * OFFSET_Y,
       },
       size: { width: SHAPE_WIDTH, height: SHAPE_HEIGHT },
-      text: `Shape ${shapes.length + 1}`,
+      text: `Shape${shapes.length + 1}`,
       color: getRandomColor(),
     };
 
