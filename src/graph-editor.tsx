@@ -14,8 +14,23 @@ export function GraphEditor() {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
   }
 
+  const getScale = (canvasWidth: number, canvasHeight: number) => {
+    if (shapes.length === 0) {
+      return 1;
+    }
+    const maxX = Math.max(...shapes.map((s) => s.position.x + s.size.width));
+    const maxY = Math.max(...shapes.map((s) => s.position.y + s.size.height));
+
+    return Math.min(canvasWidth / maxX, canvasHeight / maxY, 1);
+  };
+
   const draw = (context: CanvasRenderingContext2D) => {
     clearCanvas(context);
+
+    const scale = getScale(context.canvas.width, context.canvas.height);
+
+    context.save();
+    context.scale(scale, scale);
 
     shapes.forEach((shape) => renderShape(context, shape, selectedId === shape.id));
     links.forEach((link) => {
@@ -23,14 +38,16 @@ export function GraphEditor() {
       const toShape = shapes.find((s) => s.id === link.toId)!;
       renderLink(context, fromShape, toShape);
     });
+
+    context.restore();
   };
 
   const handleAddShape = () => {
     const newShape: Shape = {
       id: Date.now().toString(),
       position: {
-        x: 50 + shapes.length * 50,
-        y: 50 + shapes.length * 100,
+        x: shapes.length * 50,
+        y: shapes.length * 100,
       },
       size: { width: 150, height: 50 },
       text: `Shape ${shapes.length + 1}`,
@@ -50,8 +67,8 @@ export function GraphEditor() {
         .map((shape, index) => ({
           ...shape,
           position: {
-            x: 50 + index * 50,
-            y: 50 + index * 100,
+            x: index * 50,
+            y: index * 100,
           },
         })),
     );
@@ -70,11 +87,15 @@ export function GraphEditor() {
 
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      return;
+    }
 
     const rect = canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    const scale = getScale(canvas.width, canvas.height);
+
+    const mouseX = (e.clientX - rect.left) / scale;
+    const mouseY = (e.clientY - rect.top) / scale;
 
     const clickedShape = [...shapes]
       .reverse()
