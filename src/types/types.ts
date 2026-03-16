@@ -13,6 +13,7 @@ export interface Shape {
   position: Position;
   size: Size;
   text: string;
+  color: string;
 }
 
 export interface Link {

@@ -1,4 +1,5 @@
-import type { Shape } from 'src/types/types';
+import type { Shape } from '../types/types';
+import { LINK_COLOR } from './constants/colors';
 
 export const renderLink = (context: CanvasRenderingContext2D, from: Shape, to: Shape) => {
   const startX = from.position.x + from.size.width / 2;
@@ -9,7 +10,7 @@ export const renderLink = (context: CanvasRenderingContext2D, from: Shape, to: S
   context.beginPath();
   context.moveTo(startX, startY);
   context.lineTo(endX, endY);
-  context.strokeStyle = '#373737';
+  context.strokeStyle = LINK_COLOR;
   context.lineWidth = 1;
   context.stroke();
 
@@ -21,6 +22,6 @@ function drawArrowhead(context: CanvasRenderingContext2D, endX: number, endY: nu
   context.moveTo(endX, endY);
   context.lineTo(endX - 10, endY - 5);
   context.lineTo(endX - 5, endY - 10);
-  context.fillStyle = '#373737';
+  context.fillStyle = LINK_COLOR;
   context.fill();
 }

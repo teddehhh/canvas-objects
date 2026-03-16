@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Link, Shape } from '../../types/types';
 import { OFFSET_X, OFFSET_Y } from '../constants/offset';
 import { SHAPE_HEIGHT, SHAPE_WIDTH } from '../constants/shape';
+import { getRandomColor } from '../get-random-color';
 
 export function useGraph() {
   const [shapes, setShapes] = useState<Shape[]>([]);
@@ -17,6 +18,7 @@ export function useGraph() {
       },
       size: { width: SHAPE_WIDTH, height: SHAPE_HEIGHT },
       text: `Shape ${shapes.length + 1}`,
+      color: getRandomColor(),
     };
 
     setShapes([...shapes, newShape]);
