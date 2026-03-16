@@ -5,7 +5,9 @@ export function useCanvas(draw: (context: CanvasRenderingContext2D) => void, dep
 
   useLayoutEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      return;
+    }
 
     const context = canvas.getContext('2d');
     if (!context) {
