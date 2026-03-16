@@ -4,6 +4,8 @@ import { useCanvas } from '../lib/hooks/useCanvas';
 import type { Link, Shape } from '../types/types';
 import { renderLink } from '../lib/render-link';
 import { renderShape } from '../lib/render-shape';
+import { SHAPE_HEIGHT, SHAPE_WIDTH } from '../lib/constants/shape';
+import { OFFSET_X, OFFSET_Y } from '../lib/constants/offset';
 
 export function GraphEditor() {
   const [shapes, setShapes] = useState<Shape[]>([]);
@@ -46,10 +48,10 @@ export function GraphEditor() {
     const newShape: Shape = {
       id: Date.now().toString(),
       position: {
-        x: shapes.length * 50,
-        y: shapes.length * 100,
+        x: shapes.length * OFFSET_X,
+        y: shapes.length * OFFSET_Y,
       },
-      size: { width: 150, height: 50 },
+      size: { width: SHAPE_WIDTH, height: SHAPE_HEIGHT },
       text: `Shape ${shapes.length + 1}`,
     };
 
@@ -67,8 +69,8 @@ export function GraphEditor() {
         .map((shape, index) => ({
           ...shape,
           position: {
-            x: index * 50,
-            y: index * 100,
+            x: index * OFFSET_X,
+            y: index * OFFSET_Y,
           },
         })),
     );
