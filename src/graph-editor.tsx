@@ -117,9 +117,15 @@ export function GraphEditor() {
   return (
     <div className={styles.container}>
       <div className={styles.buttonContainer}>
-        <button onClick={handleAddShape}>Add</button>
-        <button disabled={isRemoveDisabled} onClick={handleRemoveSelected}>
-          Remove
+        <button onClick={handleAddShape}>
+          <span>&#43;</span>Add
+        </button>
+        <button
+          className={styles.removeButton}
+          disabled={isRemoveDisabled}
+          onClick={handleRemoveSelected}
+        >
+          <span>&#128465;</span>Remove
         </button>
       </div>
       <canvas ref={canvasRef} className={styles.canvas} onClick={handleCanvasClick}></canvas>
