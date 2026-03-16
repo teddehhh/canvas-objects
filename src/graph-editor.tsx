@@ -39,14 +39,32 @@ export function GraphEditor() {
     setShapes([...shapes, newShape]);
 
     if (shapes.length) {
-      const fromId = selectedId ?? shapes[shapes.length - 1]?.id ?? '';
-      setLinks([...links, { fromId, toId: newShape.id }]);
+      setLinks([...links, { fromId: shapes[shapes.length - 1]!.id, toId: newShape.id }]);
     }
   };
 
   const handleRemoveSelected = () => {
-    setShapes(shapes.filter((shape) => shape.id !== selectedId));
-    setLinks(links.filter((link) => link.fromId !== selectedId && link.toId !== selectedId));
+    setShapes(
+      shapes
+        .filter((shape) => shape.id !== selectedId)
+        .map((shape, index) => ({
+          ...shape,
+          position: {
+            x: 50 + index * 50,
+            y: 50 + index * 100,
+          },
+        })),
+    );
+    setLinks(
+      links
+        .map((link, index) => {
+          if (link.toId === selectedId && index < links.length - 1) {
+            return { fromId: link.fromId, toId: links[index + 1]!.toId };
+          }
+          return link;
+        })
+        .filter((link) => link.fromId !== selectedId && link.toId !== selectedId),
+    );
     setSelectedId(null);
   };
 
@@ -69,7 +87,6 @@ export function GraphEditor() {
       );
 
     setSelectedId(clickedShape ? clickedShape.id : null);
-    console.log(clickedShape);
   };
 
   const isRemoveDisabled = selectedId === null;
