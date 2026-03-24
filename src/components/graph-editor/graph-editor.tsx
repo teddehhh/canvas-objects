@@ -47,9 +47,10 @@ export function GraphEditor() {
     context.scale(scale, scale);
 
     shapes.forEach((shape) => renderShape(context, shape, selectedId === shape.id));
+    const shapesMap = new Map(shapes.map((s) => [s.id, s]));
     links.forEach((link) => {
-      const fromShape = shapes.find((s) => s.id === link.fromId)!;
-      const toShape = shapes.find((s) => s.id === link.toId)!;
+      const fromShape = shapesMap.get(link.fromId)!;
+      const toShape = shapesMap.get(link.toId)!;
       renderLink(context, fromShape, toShape);
     });
 
